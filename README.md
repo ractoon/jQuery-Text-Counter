@@ -62,22 +62,23 @@ If an error is present it is appended within the element. The input gains the `i
 ### Options
 
 ```javascript
-'type'					: "character",				// "character" or "word"
-'min'					: 0,						// minimum number of characters/words
-'max'					: 200,						// maximum number of characters/words, -1 for unlimited
-'countContainerElement'	: "div",					// HTML element to wrap the text count in
-'countContainerClass'	: "text-count-wrapper",		// class applied to the countContainerElement
-'inputErrorClass'		: "error",					// error class appended to the input element if error occurs 
-'counterErrorClass'		: "error",					// error class appended to the countContainerElement if error occurs 
-'counterText'			: "Total Count: ",			// counter text
-'errorTextElement'		: "div",					// error text element
-'minimumErrorText'		: "Minimum not met",		// error message for minimum not met,
-'maximumErrorText'		: "Maximum exceeded",		// error message for maximum range exceeded,
-'displayErrorText'		: true,						// display error text messages for minimum/maximum values
-'stopInputAtMaximum'	: true,						// stop further text input if maximum reached
-'countSpaces'			: false,					// count spaces as character (only for "character" type)
-'countDown'             : false,                    // if the counter should deduct from maximum characters/words rather than counting up
-'countDownText'         : "Remaining: "             // count down text
+'type'						: "character",				// "character" or "word"
+'min'						: 0,						// minimum number of characters/words
+'max'						: 200,						// maximum number of characters/words, -1 for unlimited
+'countContainerElement'		: "div",					// HTML element to wrap the text count in
+'countContainerClass'		: "text-count-wrapper",		// class applied to the countContainerElement
+'inputErrorClass'			: "error",					// error class appended to the input element if error occurs 
+'counterErrorClass'			: "error",					// error class appended to the countContainerElement if error occurs 
+'counterText'				: "Total Count: ",			// counter text
+'errorTextElement'			: "div",					// error text element
+'minimumErrorText'			: "Minimum not met",		// error message for minimum not met,
+'maximumErrorText'			: "Maximum exceeded",		// error message for maximum range exceeded,
+'displayErrorText'			: true,						// display error text messages for minimum/maximum values
+'stopInputAtMaximum'		: true,						// stop further text input if maximum reached
+'countSpaces'				: false,					// count spaces as character (only for "character" type)
+'countDown'             	: false,                    // if the counter should deduct from maximum characters/words rather than counting up
+'countDownText'         	: "Remaining: "             // count down text
+'countExtendedCharacters'   : false                     // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 ```
 
 ## Development

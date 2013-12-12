@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.1.0
+* jQuery Text Counter Plugin v0.2.0
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2013 ractoon
@@ -54,6 +54,16 @@
         		else {
         			textCount = $text.replace(/\s/g, '').length;
         		}
+
+                if (base.options.countExtendedCharacters) {
+                    var extended = $text.match(/[^\x00-\xff]/gi);
+
+                    if (extended == null) {
+                        textCount = $text.length;
+                    } else {
+                        textCount = $text.length + extended.length;
+                    }
+                }
         	}
 
             // if this is a countdown counter deduct from the max characters/words
@@ -161,22 +171,23 @@
     };
 
     $.textcounter.defaultOptions = {
-    	'type'					: "character",							// "character" or "word"
-    	'min'					: 0,									// minimum number of characters/words
-    	'max'					: 200,									// maximum number of characters/words, -1 for unlimited
-    	'countContainerElement'	: "div",								// HTML element to wrap the text count in
-    	'countContainerClass'	: "text-count-wrapper",					// class applied to the countContainerElement
-    	'inputErrorClass'		: "error",								// error class appended to the input element if error occurs 
-    	'counterErrorClass'		: "error",								// error class appended to the countContainerElement if error occurs 
-    	'counterText'			: "Total Count: ",						// counter text
-    	'errorTextElement'		: "div",								// error text element
-    	'minimumErrorText'		: "Minimum not met",					// error message for minimum not met,
-    	'maximumErrorText'		: "Maximum exceeded",					// error message for maximum range exceeded,
-    	'displayErrorText'		: true,									// display error text messages for minimum/maximum values
-    	'stopInputAtMaximum'	: true,									// stop further text input if maximum reached
-    	'countSpaces'			: false,								// count spaces as character (only for "character" type)
-        'countDown'             : false,                                // if the counter should deduct from maximum characters/words rather than counting up
-        'countDownText'         : "Remaining: "                         // count down text
+    	'type'                      : "character",							// "character" or "word"
+    	'min'                       : 0,									// minimum number of characters/words
+    	'max'                       : 200,									// maximum number of characters/words, -1 for unlimited
+    	'countContainerElement'     : "div",								// HTML element to wrap the text count in
+    	'countContainerClass'       : "text-count-wrapper",					// class applied to the countContainerElement
+    	'inputErrorClass'           : "error",								// error class appended to the input element if error occurs 
+    	'counterErrorClass'         : "error",								// error class appended to the countContainerElement if error occurs 
+    	'counterText'               : "Total Count: ",						// counter text
+    	'errorTextElement'          : "div",								// error text element
+    	'minimumErrorText'          : "Minimum not met",					// error message for minimum not met,
+    	'maximumErrorText'          : "Maximum exceeded",					// error message for maximum range exceeded,
+    	'displayErrorText'          : true,									// display error text messages for minimum/maximum values
+    	'stopInputAtMaximum'        : true,									// stop further text input if maximum reached
+    	'countSpaces'               : false,								// count spaces as character (only for "character" type)
+        'countDown'                 : false,                                // if the counter should deduct from maximum characters/words rather than counting up
+        'countDownText'             : "Remaining: ",                        // count down text
+        'countExtendedCharacters'   : false                                 // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
     };
 
     $.fn.textcounter = function(options) {
