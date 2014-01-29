@@ -49,7 +49,7 @@
         	}
         	else {	// character count
         		if (base.options.countSpaces) {	// if need to count spaces
-        			textCount = $text.length;
+        			textCount = $text.replace(/\n/g, "\r\n").length;
         		}
         		else {
         			textCount = $text.replace(/\s/g, '').length;
