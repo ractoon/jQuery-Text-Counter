@@ -64,7 +64,7 @@ If an error is present it is appended within the element. The input gains the `i
 ```javascript
 'type'						: "character",				// "character" or "word"
 'min'						: 0,						// minimum number of characters/words
-'max'						: 200,						// maximum number of characters/words, -1 for unlimited
+'max'						: 200,						// maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
 'countContainerElement'		: "div",					// HTML element to wrap the text count in
 'countContainerClass'		: "text-count-wrapper",		// class applied to the countContainerElement
 'inputErrorClass'			: "error",					// error class appended to the input element if error occurs 
