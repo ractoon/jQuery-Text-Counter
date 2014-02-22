@@ -15,13 +15,13 @@ Include script after the jQuery library:
 Basic usage:
 
 ```javascript
-$(input).textcounter();
+$('input').textcounter();
 ```
 
 Define maximum words and allow further input:
 
 ```javascript
-$(input).textcounter({
+$('input').textcounter({
 	type: "word",
 	max: 15,
 	stopInputAtMaximum: false
@@ -31,7 +31,7 @@ $(input).textcounter({
 Define minimum characters and set custom `countDownText`:
 
 ```javascript
-$(input).textcounter({
+$('input').textcounter({
 	min: 20,
 	countDownText: "Characters Left: "
 });
