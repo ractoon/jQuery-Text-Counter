@@ -81,6 +81,26 @@ If an error is present it is appended within the element. The input gains the `i
 'countExtendedCharacters'   : false                     // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 ```
 
+### Events
+
+```javascript
+
+onMaxReached : function (el) { console.log('max reached'); } // this is triggered whenever an element reaches the max limit. `el` is passed to represent current element as `this` cannot be used there.
+```
+
+### Example usage for event
+
+```javascript
+
+$('input').textcounter({
+    type: 'word',
+    max: 9,
+    onMaxReached: function(el) {
+        $(el).hide(); // or .addClass('red') or whatever()
+    }
+})
+```
+
 ## Development
 
 - Source hosted at [GitHub](https://github.com/ractoon/jQuery-Text-Counter)
