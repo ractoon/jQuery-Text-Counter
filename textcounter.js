@@ -94,6 +94,7 @@
 
             if (base.options.max !== -1) {  // if a maximum value has been set
                 if (textCount > base.options.max && base.options.max != 0) {
+                    base.options.onMaxReached(base.el);  // trigger the event
                     if (base.options.stopInputAtMaximum) {  // if the string should be trimmed at the maximum length
                         var trimmedString = '';
 
@@ -198,7 +199,10 @@
         'countSpaces'               : false,                                // count spaces as character (only for "character" type)
         'countDown'                 : false,                                // if the counter should deduct from maximum characters/words rather than counting up
         'countDownText'             : "Remaining: ",                        // count down text
-        'countExtendedCharacters'   : false                                 // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+        'countExtendedCharacters'   : false,                                 // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+        'onMaxReached'              : function(el) {                         // Event to deal when max limit is reached. We cannot use 'this' inside it so just pass the el 
+                                        console.log('max readched');
+                                    }
     };
 
     $.fn.textcounter = function(options) {
