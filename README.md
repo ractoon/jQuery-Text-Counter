@@ -85,7 +85,8 @@ If an error is present it is appended within the element. The input gains the `i
 
 ```javascript
 
-onMaxReached : function (el) { console.log('max reached'); }
+onMaxReached : function (el) { console.log('max reached'); } // this is triggered whenever an element reaches the max limit. `el` is passed to represent current element as `this` cannot be used there.
+```
 
 ### Example usage for event
 
@@ -98,6 +99,7 @@ $('input').textcounter({
         $(el).hide(); // or .addClass('red') or whatever()
     }
 })
+```
 
 ## Development
 
