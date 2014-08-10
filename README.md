@@ -10,7 +10,9 @@ Include script after the jQuery library:
 <script src="/path/to/textcounter.min.js"></script>
 ```
 
-Install using [bower](http://bower.io/)
+#### Bower
+
+Alternatively install using [bower](http://bower.io/):
 
 ```
 bower install jquery-text-counter
