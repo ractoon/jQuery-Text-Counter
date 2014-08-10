@@ -61,15 +61,15 @@ If an error is present it is appended within the element. The input gains the `i
 
 ## Callbacks
 
-### maxcount(el)
+### maxcount(el){}
 
 Fires when a counter reaches the maximum word/character count.
 
-### mincount(el)
+### mincount(el){}
 
 Fires when a counter reaches the minimum word/character count.
 
-### init(el)
+### init(el){}
 
 Fires after the counters is initialized.
 
@@ -113,6 +113,6 @@ init                      : function(el){}          // Callback: function(elemen
 
 ## Contributors
 
-[stgeneral](https://github.com/stgeneral) - count length newlines fix
-[moinism](https://github.com/moinism) - callback API
-[benr77](https://github.com/benr77) - bower support
+- [stgeneral](https://github.com/stgeneral) - count length newlines fix
+- [moinism](https://github.com/moinism) - callback API
+- [benr77](https://github.com/benr77) - bower support
