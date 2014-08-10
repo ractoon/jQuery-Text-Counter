@@ -1,26 +1,13 @@
 {
-	"name": "ractoon-jQuery-Text-Counter",
+	"name": "jQueryTextCounter",
 	"version": "0.3.0",
-	"homepage": "https://github.com/ractoon/jQuery-Text-Counter",
 	"authors": [
-		"ractoon https://github.com/ractoon"
+		"ractoon (https://github.com/ractoon)"
 	],
 	"description": "A jQuery plugin for counting and limiting characters/words on text input, or textarea, elements.",
-	"main": [
-		"textcounter.js"
-	],
-	"keywords": [
-		"jquery",
-		"count",
-		"character",
-		"word"
-	],
+	"main": "textcounter.js",
 	"license": "MIT",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	]
+	"dependencies": {
+      "jquery": ">=1.5.0"
+  }
 }
