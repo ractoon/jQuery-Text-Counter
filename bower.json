@@ -3,10 +3,12 @@
 	"version": "0.3.0",
 	"homepage": "https://github.com/ractoon/jQuery-Text-Counter",
 	"authors": [
-		"Ractoon https://github.com/ractoon"
+		"ractoon https://github.com/ractoon"
 	],
 	"description": "A jQuery plugin for counting and limiting characters/words on text input, or textarea, elements.",
-	"main": "textcounter.js",
+	"main": [
+		"textcounter.js"
+	],
 	"keywords": [
 		"jquery",
 		"count",
