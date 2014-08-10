@@ -59,26 +59,45 @@ If an error is present it is appended within the element. The input gains the `i
 </div>
 ```
 
-### Options
+## Callbacks
+
+### maxcount(el)
+
+Fires when a counter reaches the maximum word/character count.
+
+### mincount(el)
+
+Fires when a counter reaches the minimum word/character count.
+
+### init(el)
+
+Fires after the counters is initialized.
+
+## Options
 
 ```javascript
-'type'						: "character",				// "character" or "word"
-'min'						: 0,						// minimum number of characters/words
-'max'						: 200,						// maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
-'countContainerElement'		: "div",					// HTML element to wrap the text count in
-'countContainerClass'		: "text-count-wrapper",		// class applied to the countContainerElement
-'inputErrorClass'			: "error",					// error class appended to the input element if error occurs 
-'counterErrorClass'			: "error",					// error class appended to the countContainerElement if error occurs 
-'counterText'				: "Total Count: ",			// counter text
-'errorTextElement'			: "div",					// error text element
-'minimumErrorText'			: "Minimum not met",		// error message for minimum not met,
-'maximumErrorText'			: "Maximum exceeded",		// error message for maximum range exceeded,
-'displayErrorText'			: true,						// display error text messages for minimum/maximum values
-'stopInputAtMaximum'		: true,						// stop further text input if maximum reached
-'countSpaces'				: false,					// count spaces as character (only for "character" type)
-'countDown'             	: false,                    // if the counter should deduct from maximum characters/words rather than counting up
-'countDownText'         	: "Remaining: "             // count down text
-'countExtendedCharacters'   : false                     // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+'type'										: "character",						// "character" or "word"
+'min'											: 0,											// minimum number of characters/words
+'max'											: 200,										// maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+'countContainerElement'		: "div",									// HTML element to wrap the text count in
+'countContainerClass'			: "text-count-wrapper",		// class applied to the countContainerElement
+'inputErrorClass'					: "error",								// error class appended to the input element if error occurs
+'counterErrorClass'				: "error",								// error class appended to the countContainerElement if error occurs
+'counterText'							: "Total Count: ",				// counter text
+'errorTextElement'				: "div",									// error text element
+'minimumErrorText'				: "Minimum not met",			// error message for minimum not met,
+'maximumErrorText'				: "Maximum exceeded",			// error message for maximum range exceeded,
+'displayErrorText'				: true,										// display error text messages for minimum/maximum values
+'stopInputAtMaximum'			: true,										// stop further text input if maximum reached
+'countSpaces'							: false,									// count spaces as character (only for "character" type)
+'countDown'             	: false,                  // if the counter should deduct from maximum characters/words rather than counting up
+'countDownText'         	: "Remaining: "           // count down text
+'countExtendedCharacters'	: false                   // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+
+// Callback API
+maxcount                  : function(el){},         // Callback: function(element) - Fires when the counter hits the maximum word/character count
+mincount                  : function(el){},         // Callback: function(element) - Fires when the counter hits the minimum word/character count
+init                      : function(el){}          // Callback: function(element) - Fires after the counter is initially setup
 ```
 
 ## Development
