@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.3.1
+* jQuery Text Counter Plugin v0.3.2
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -43,15 +43,11 @@
           eventTriggered =  e.originalEvent === undefined ? false : true;
 
       if (base.options.type == "word") {  // word count
-        textCount = $text.replace(/\s+/g," ").split(' ').length;
-
-        if ($this.val() === '') {
-          textCount = 0;
-        }
+        textCount = $text.trim().replace(/\s+/gi, ' ').split(' ').length;
       }
       else {  // character count
         if (base.options.countSpaces) { // if need to count spaces
-          textCount = $text.replace(/\n/g, "\r\n").length;
+          textCount = $text.replace(/[^\S\n|\r|\r\n]/g, ' ').length;
         }
         else {
           textCount = $text.replace(/\s/g, '').length;
@@ -107,10 +103,18 @@
             var trimmedString = '';
 
             if (base.options.type == "word") {  // word type
-              var wordArray = $text.split(/[\s\.\?]+/);
+              var wordArray = $text.split(/[^\S\n]/g);
+              var i = 0;
 
-              for (var i = 0; i < base.options.max; i++) {
-                trimmedString += wordArray[i] + ' ';
+              // iterate over individual words
+              while (i < wordArray.length) {
+                // if over the maximum words allowed break;
+                if (i >= base.options.max - 1) break;
+
+                if (wordArray[i] !== undefined) {
+                  trimmedString += wordArray[i] + ' ';
+                  i++;
+                }
               }
             }
             else {  // character type
@@ -130,7 +134,7 @@
               }
             }
 
-            $this.val(trimmedString);
+            $this.val(trimmedString.trim());
 
             textTotalCount = base.options.countDown ? 0 : base.options.max;
             base.setCount(textTotalCount);
