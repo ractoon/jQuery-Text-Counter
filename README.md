@@ -124,3 +124,4 @@ init                     : function(el){}          // Callback: function(element
 - [stgeneral](https://github.com/stgeneral) - count length newlines fix
 - [moinism](https://github.com/moinism) - callback API
 - [benr77](https://github.com/benr77) - bower support
+- [SammyB](https://github.com/SammyB) - countdown starting count fix

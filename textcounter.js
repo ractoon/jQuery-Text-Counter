@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.3.2
+* jQuery Text Counter Plugin v0.3.3
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -42,24 +42,26 @@
           textTotalCount = 0,
           eventTriggered =  e.originalEvent === undefined ? false : true;
 
-      if (base.options.type == "word") {  // word count
-        textCount = $text.trim().replace(/\s+/gi, ' ').split(' ').length;
-      }
-      else {  // character count
-        if (base.options.countSpaces) { // if need to count spaces
-          textCount = $text.replace(/[^\S\n|\r|\r\n]/g, ' ').length;
+      if (!$.isEmptyObject($text)) {
+        if (base.options.type == "word") {  // word count
+          textCount = $text.trim().replace(/\s+/gi, ' ').split(' ').length;
         }
-        else {
-          textCount = $text.replace(/\s/g, '').length;
-        }
+        else {  // character count
+          if (base.options.countSpaces) { // if need to count spaces
+            textCount = $text.replace(/[^\S\n|\r|\r\n]/g, ' ').length;
+          }
+          else {
+            textCount = $text.replace(/\s/g, '').length;
+          }
 
-        if (base.options.countExtendedCharacters) {
-          var extended = $text.match(/[^\x00-\xff]/gi);
+          if (base.options.countExtendedCharacters) {
+            var extended = $text.match(/[^\x00-\xff]/gi);
 
-          if (extended == null) {
-            textCount = $text.length;
-          } else {
-            textCount = $text.length + extended.length;
+            if (extended == null) {
+              textCount = $text.length;
+            } else {
+              textCount = $text.length + extended.length;
+            }
           }
         }
       }
