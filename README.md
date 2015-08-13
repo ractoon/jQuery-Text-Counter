@@ -89,6 +89,7 @@ min                      : 0,                      // minimum number of characte
 max                      : 200,                    // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
 countContainerElement    : "div",                  // HTML element to wrap the text count in
 countContainerClass      : "text-count-wrapper",   // class applied to the countContainerElement
+textCountClass           : "text-count",           // class applied to the counter length
 inputErrorClass          : "error",                // error class appended to the input element if error occurs
 counterErrorClass        : "error",                // error class appended to the countContainerElement if error occurs
 counterText              : "Total Count: ",        // counter text
