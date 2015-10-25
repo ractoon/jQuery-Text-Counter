@@ -20,13 +20,13 @@ bower install jquery-text-counter
 
 ## Usage
 
-Basic usage:
+Basic usage ([view editable code](http://jsfiddle.net/ractoon/p7x72La3/)):
 
 ```javascript
 $('input').textcounter();
 ```
 
-Define maximum words and allow further input:
+Define maximum words and allow further input ([view editable code](http://jsfiddle.net/ractoon/9os1cwde/)):
 
 ```javascript
 $('input').textcounter({
@@ -36,7 +36,7 @@ $('input').textcounter({
 });
 ```
 
-Define minimum characters and set custom `countDownText`:
+Define minimum characters and set custom `countDownText` ([view editable code](http://jsfiddle.net/ractoon/n4ufjo3b/)):
 
 ```javascript
 $('input').textcounter({
@@ -44,6 +44,10 @@ $('input').textcounter({
 	countDownText: "Characters Left: "
 });
 ```
+
+## Example
+
+[View editable example](http://jsfiddle.net/ractoon/1xkuyp46/1/)
 
 ## Elements
 
