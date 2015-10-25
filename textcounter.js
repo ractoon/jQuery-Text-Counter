@@ -25,7 +25,7 @@
       var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
           counterNum = base.options.countDown ? base.options.max : 0;
 
-      base.$el.after('<' + base.options.countContainerElement + ' class="' + base.options.countContainerClass + '">' + counterText + '<span class="text-count">' + counterNum + '</span></' + base.options.countContainerElement + '>');
+      base.$el.after('<' + base.options.countContainerElement + ' class="' + base.options.countContainerClass + '">' + counterText + '<span class="' + base.options.textCountClass + '">' + counterNum + '</span></' + base.options.countContainerElement + '>');
 
       // bind input events
       base.$el.bind('keyup.textcounter click.textcounter blur.textcounter focus.textcounter change.textcounter paste.textcounter', base.checkLimits).trigger('click.textcounter');
@@ -154,7 +154,7 @@
       var $this = base.$el,
           $countEl = $this.next('.' + base.options.countContainerClass);
 
-      $countEl.children('.text-count').text(count);
+      $countEl.children('.' + base.options.textCountClass).text(count);
     };
 
     base.setErrors = function(type) {
@@ -202,6 +202,7 @@
     'max'                       : 200,                      // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
     'countContainerElement'     : "div",                    // HTML element to wrap the text count in
     'countContainerClass'       : "text-count-wrapper",     // class applied to the countContainerElement
+    'textCountClass'            : "text-count",             // class applied to the counter length
     'inputErrorClass'           : "error",                  // error class appended to the input element if error occurs
     'counterErrorClass'         : "error",                  // error class appended to the countContainerElement if error occurs
     'counterText'               : "Total Count: ",          // counter text
