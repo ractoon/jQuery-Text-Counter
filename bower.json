@@ -4,7 +4,8 @@
 	"main": "textcounter.js",
 	"license": "MIT",
 	"ignore": [
-		"textcounter.jquery.json"
+		"textcounter.jquery.json",
+		"package.json"
 	],
 	"authors": [
 		"ractoon (https://github.com/ractoon)"
