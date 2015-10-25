@@ -10,6 +10,8 @@ Include script after the jQuery library:
 <script src="/path/to/textcounter.min.js"></script>
 ```
 
+or
+
 #### npm
 
 Install using [npm](https://www.npmjs.com/):
@@ -17,6 +19,8 @@ Install using [npm](https://www.npmjs.com/):
 ```
 npm install jquery-text-counter
 ```
+
+or
 
 #### Bower
 
@@ -34,7 +38,7 @@ Basic usage ([view editable code](http://jsfiddle.net/ractoon/p7x72La3/)):
 $('input').textcounter();
 ```
 
-Define maximum words and allow further input ([view editable code](http://jsfiddle.net/ractoon/9os1cwde/)):
+Define maximum words and allow further input ([view editable code](http://jsfiddle.net/ractoon/n4ufjo3b/)):
 
 ```javascript
 $('input').textcounter({
@@ -44,7 +48,7 @@ $('input').textcounter({
 });
 ```
 
-Define minimum characters and set custom `countDownText` ([view editable code](http://jsfiddle.net/ractoon/n4ufjo3b/)):
+Define minimum characters and set custom `countDownText` ([view editable code](http://jsfiddle.net/ractoon/jx8awxbb/)):
 
 ```javascript
 $('input').textcounter({
