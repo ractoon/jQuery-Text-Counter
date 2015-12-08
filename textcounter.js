@@ -36,7 +36,7 @@
 
     base.checkLimits = function(e) {
       var $this = base.$el,
-          $countEl = $this.next('.' + base.options.countContainerClass),
+          $countEl = $this.nextAll('.' + base.options.countContainerClass),
           $text = $this.val(),
           textCount = 0,
           textTotalCount = 0,
@@ -74,7 +74,7 @@
           base.options.max = max;
         }
         else {
-          base.$el.next('.' + base.options.countContainerClass).text('error: [maxlength] attribute not set');
+          base.$el.nextAll('.' + base.options.countContainerClass).text('error: [maxlength] attribute not set');
         }
       }
 
@@ -152,14 +152,14 @@
 
     base.setCount = function(count) {
       var $this = base.$el,
-          $countEl = $this.next('.' + base.options.countContainerClass);
+          $countEl = $this.nextAll('.' + base.options.countContainerClass);
 
       $countEl.children('.' + base.options.textCountClass).text(count);
     };
 
     base.setErrors = function(type) {
       var $this = base.$el,
-          $countEl = $this.next('.' + base.options.countContainerClass);
+          $countEl = $this.nextAll('.' + base.options.countContainerClass);
 
       $this.addClass(base.options.inputErrorClass);
       $countEl.addClass(base.options.counterErrorClass);
@@ -182,7 +182,7 @@
 
     base.clearErrors = function(type) {
       var $this = base.$el,
-          $countEl = $this.next('.' + base.options.countContainerClass);
+          $countEl = $this.nextAll('.' + base.options.countContainerClass);
 
       $countEl.children('.error-text-' + type).remove();
 
