@@ -120,6 +120,8 @@ countDownText            : "Remaining: ",          // count down text
 countExtendedCharacters  : false,                  // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 
 // Callback API
+maxunder                 : function(el){},         //  Callback: function(element) - Fires when counter is under max limit
+minunder                 : function(el){},         //  Callback: function(element) - Fires when counter is under min limit
 maxcount                 : function(el){},         // Callback: function(element) - Fires when the counter hits the maximum word/character count
 mincount                 : function(el){},         // Callback: function(element) - Fires when the counter hits the minimum word/character count
 init                     : function(el){}          // Callback: function(element) - Fires after the counter is initially setup
