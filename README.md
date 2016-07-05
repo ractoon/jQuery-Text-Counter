@@ -97,6 +97,15 @@ Fires when a counter reaches the minimum word/character count.
 
 Fires after the counter is initialized.
 
+### maxunder(el){}
+
+Fires when counter is under max limit.
+
+### minunder(el){}
+
+Fires when counter is under min limit.
+
+
 ## Options
 
 ```javascript
