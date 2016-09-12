@@ -154,3 +154,4 @@ init                     : function(el){}          // Callback: function(element
 - [benr77](https://github.com/benr77) - bower support
 - [SammyB](https://github.com/SammyB) - countdown starting count fix
 - [eprincen2](https://github.com/eprincen2) - jQuery Validate compatibility fix
+- [Hexodus](https://github.com/Hexodus) - minunder/maxunder events
