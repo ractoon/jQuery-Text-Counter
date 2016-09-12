@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.3.5
+* jQuery Text Counter Plugin v0.3.6
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -84,9 +84,13 @@
       // set the current text count
       base.setCount(textTotalCount);
 
+
       if (base.options.min > 0 && eventTriggered) {   // if a minimum value has been set
         if (textCount < base.options.min) {
           base.setErrors('min');
+
+          // TextCounter: minunder(el) Callback
+          base.options.minunder(base.el);
         }
         else if (textCount >= base.options.min) {
           // TextCounter: mincount(el) Callback
@@ -145,6 +149,8 @@
           }
         }
         else {
+          // TextCounter: maxunder(el) Callback
+          base.options.maxunder(base.el);
           base.clearErrors('max');
         }
       }
@@ -217,6 +223,8 @@
     'countExtendedCharacters'   : false,                    // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 
     // Callback API
+    maxunder                     : function(el){},          //  Callback: function(element) - Fires when counter under max limit
+    minunder                     : function(el){},          //  Callback: function(element) - Fires when counter under min limit
     maxcount                    : function(el){},           // Callback: function(element) - Fires when the counter hits the maximum word/character count
     mincount                    : function(el){},           // Callback: function(element) - Fires when the counter hits the minimum word/character count
     init                        : function(el){}            // Callback: function(element) - Fires after the counter is initially setup
