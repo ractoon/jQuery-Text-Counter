@@ -25,7 +25,9 @@
       var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
           counterNum = base.options.countDown ? base.options.max : 0;
 
-      base.$el.after('<' + base.options.countContainerElement + ' class="' + base.options.countContainerClass + '">' + counterText + '<span class="' + base.options.textCountClass + '">' + counterNum + '</span></' + base.options.countContainerElement + '>');
+	    base.$text_counter = $('<span />').addClass(base.options.textCountClass).text(counterNum);
+	    base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).text(counterText).append(base.$text_counter);
+      base.$el.after(base.$container);
 
       // bind input events
       base.$el.bind('keyup.textcounter click.textcounter blur.textcounter focus.textcounter change.textcounter paste.textcounter', base.checkLimits).trigger('click.textcounter');
@@ -36,7 +38,7 @@
 
     base.checkLimits = function(e) {
       var $this = base.$el,
-          $countEl = $this.nextAll('.' + base.options.countContainerClass),
+          $countEl = base.$container,
           $text = $this.val(),
           textCount = 0,
           textTotalCount = 0,
@@ -74,7 +76,7 @@
           base.options.max = max;
         }
         else {
-          base.$el.nextAll('.' + base.options.countContainerClass).text('error: [maxlength] attribute not set');
+          base.$container.text('error: [maxlength] attribute not set');
         }
       }
 
@@ -157,15 +159,12 @@
     };
 
     base.setCount = function(count) {
-      var $this = base.$el,
-          $countEl = $this.nextAll('.' + base.options.countContainerClass);
-
-      $countEl.children('.' + base.options.textCountClass).text(count);
+      base.$text_counter.text(count);
     };
 
     base.setErrors = function(type) {
       var $this = base.$el,
-          $countEl = $this.nextAll('.' + base.options.countContainerClass);
+          $countEl = $base.$container;
 
       $this.addClass(base.options.inputErrorClass);
       $countEl.addClass(base.options.counterErrorClass);
@@ -188,7 +187,7 @@
 
     base.clearErrors = function(type) {
       var $this = base.$el,
-          $countEl = $this.nextAll('.' + base.options.countContainerClass);
+          $countEl = base.$container;
 
       $countEl.children('.error-text-' + type).remove();
 
