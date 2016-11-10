@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.4.0
+* jQuery Text Counter Plugin v0.4.1
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -25,8 +25,8 @@
       var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
           counterNum = base.options.countDown ? base.options.max : 0;
 
-	    base.$text_counter = $('<span />').addClass(base.options.textCountClass).text(counterNum);
-	    base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).text(counterText).append(base.$text_counter);
+      base.$text_counter = $('<span />').addClass(base.options.textCountClass).text(counterNum);
+      base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).text(counterText).append(base.$text_counter);
       base.$el.after(base.$container);
 
       // bind input events
@@ -164,7 +164,8 @@
 
     base.setErrors = function(type) {
       var $this = base.$el,
-          $countEl = $base.$container;
+          $countEl = base.$container,
+          errorText = '';
 
       $this.addClass(base.options.inputErrorClass);
       $countEl.addClass(base.options.counterErrorClass);

@@ -1,6 +1,6 @@
 {
 	"name": "jquery-text-counter",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"main": "textcounter.js",
 	"license": "MIT",
 	"ignore": [

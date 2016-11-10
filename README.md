@@ -156,3 +156,4 @@ init                     : function(el){}          // Callback: function(element
 - [eprincen2](https://github.com/eprincen2) - jQuery Validate compatibility fix
 - [Hexodus](https://github.com/Hexodus) - minunder/maxunder events
 - [juliovedovatto](https://github.com/juliovedovatto) / [alvaro-canepa](https://github.com/alvaro-canepa) - multiple classes support for counter container
+- [dtipson](https://github.com/dtipson) - multiple classes error fix
