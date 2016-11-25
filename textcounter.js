@@ -1,5 +1,4 @@
 /*!
-* jQuery Text Counter Plugin v0.4.1
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -23,10 +22,11 @@
 
       // append the count element
       var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
-          counterNum = base.options.countDown ? base.options.max : 0;
+          counterNum = base.options.countDown ? base.options.max : 0,
+          $formatted_counter_text = $('<div/>').html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')).contents();
 
-      base.$text_counter = $('<span />').addClass(base.options.textCountClass).text(counterNum);
-      base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).text(counterText).append(base.$text_counter);
+      base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).append($formatted_counter_text);
+      base.$text_counter = base.$container.find('span');
       base.$el.after(base.$container);
 
       // bind input events
@@ -85,7 +85,6 @@
 
       // set the current text count
       base.setCount(textTotalCount);
-
 
       if (base.options.min > 0 && eventTriggered) {   // if a minimum value has been set
         if (textCount < base.options.min) {
@@ -211,7 +210,7 @@
     'textCountClass'            : "text-count",             // class applied to the counter length
     'inputErrorClass'           : "error",                  // error class appended to the input element if error occurs
     'counterErrorClass'         : "error",                  // error class appended to the countContainerElement if error occurs
-    'counterText'               : "Total Count: ",          // counter text
+    'counterText'               : "Total Count: %d",        // counter text
     'errorTextElement'          : "div",                    // error text element
     'minimumErrorText'          : "Minimum not met",        // error message for minimum not met,
     'maximumErrorText'          : "Maximum exceeded",       // error message for maximum range exceeded,
@@ -219,7 +218,7 @@
     'stopInputAtMaximum'        : true,                     // stop further text input if maximum reached
     'countSpaces'               : false,                    // count spaces as character (only for "character" type)
     'countDown'                 : false,                    // if the counter should deduct from maximum characters/words rather than counting up
-    'countDownText'             : "Remaining: ",            // count down text
+    'countDownText'             : "Remaining: %d",          // count down text
     'countExtendedCharacters'   : false,                    // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 
     // Callback API

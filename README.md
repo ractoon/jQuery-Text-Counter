@@ -53,7 +53,6 @@ Define minimum characters and set custom `countDownText` ([view editable code](h
 ```javascript
 $('input').textcounter({
 	min: 20,
-	countDownText: "Characters Left: "
 });
 ```
 
@@ -117,7 +116,7 @@ countContainerClass      : "text-count-wrapper",   // class applied to the count
 textCountClass           : "text-count",           // class applied to the counter length
 inputErrorClass          : "error",                // error class appended to the input element if error occurs
 counterErrorClass        : "error",                // error class appended to the countContainerElement if error occurs
-counterText              : "Total Count: ",        // counter text
+counterText              : "Total Count: %d",      // counter text, %d replaced with count value
 errorTextElement         : "div",                  // error text element
 minimumErrorText         : "Minimum not met",      // error message for minimum not met,
 maximumErrorText         : "Maximum exceeded",     // error message for maximum range exceeded,
@@ -125,7 +124,7 @@ displayErrorText         : true,                   // display error text message
 stopInputAtMaximum       : true,                   // stop further text input if maximum reached
 countSpaces              : false,                  // count spaces as character (only for "character" type)
 countDown                : false,                  // if the counter should deduct from maximum characters/words rather than counting up
-countDownText            : "Remaining: ",          // count down text
+countDownText            : "Remaining: %d",        // count down text, %d replaced with remaining value
 countExtendedCharacters  : false,                  // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
 
 // Callback API
