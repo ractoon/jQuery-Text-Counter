@@ -53,6 +53,7 @@ Define minimum characters and set custom `countDownText` ([view editable code](h
 ```javascript
 $('input').textcounter({
 	min: 20,
+	countDownText: "%d characters remaining"
 });
 ```
 
