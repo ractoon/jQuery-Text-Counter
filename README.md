@@ -127,6 +127,7 @@ countSpaces              : false,                  // count spaces as character 
 countDown                : false,                  // if the counter should deduct from maximum characters/words rather than counting up
 countDownText            : "Remaining: %d",        // count down text, %d replaced with remaining value
 countExtendedCharacters  : false,                  // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+twoCharCarriageReturn    : false,                  // count carriage returns/newlines as 2 characters
 
 // Callback API
 maxunder                 : function(el){},         // Callback: function(element) - Fires when counter is under max limit
@@ -157,3 +158,4 @@ init                     : function(el){}          // Callback: function(element
 - [Hexodus](https://github.com/Hexodus) - minunder/maxunder events
 - [juliovedovatto](https://github.com/juliovedovatto) / [alvaro-canepa](https://github.com/alvaro-canepa) - multiple classes support for counter container
 - [dtipson](https://github.com/dtipson) - multiple classes error fix
+- [jmichalicek](https://github.com/jmichalicek) - count carriage returns/newlines as 2 characters
