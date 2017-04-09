@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.6.0
+* jQuery Text Counter Plugin v0.6.1
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -118,7 +118,7 @@
             }
 
             if (base.options.max !== -1) {  // if a maximum value has been set
-                if (textCount >= base.options.max && base.options.max != 0) {
+                if (textCount >= base.options.max && base.options.max !== 0) {
                     // TextCounter: maxcount(el) Callback
                     base.options.maxcount(base.el);
 
@@ -132,7 +132,7 @@
                             // iterate over individual words
                             while (i < wordArray.length) {
                                 // if over the maximum words allowed break;
-                                if (i >= base.options.max - 1) break;
+                                if (i >= base.options.max) break;
 
                                 if (wordArray[i] !== undefined) {
                                     trimmedString += wordArray[i] + ' ';
