@@ -46,42 +46,7 @@
             eventTriggered =  e.originalEvent === undefined ? false : true;
 
             if (!$.isEmptyObject($text)) {
-                if (base.options.type == "word") {  // word count
-                    textCount = $text.trim().replace(/\s+/gi, ' ').split(' ').length;
-                }
-                else {  // character count
-                    // count carriage returns/newlines as 2 characters
-                    if (base.options.twoCharCarriageReturn) {
-                        var carriageReturns = $text.match(/(\r\n|\n|\r)/g),
-                            carriageReturnsCount = 0;
-
-                        if (carriageReturns !== null) {
-                            carriageReturnsCount = carriageReturns.length;
-                        }
-                    }
-
-                    if (base.options.countSpaces) { // if need to count spaces
-                        textCount = $text.replace(/[^\S\n|\r|\r\n]/g, ' ').length;
-                    }
-                    else {
-                        textCount = $text.replace(/\s/g, '').length;
-                    }
-
-                    // count extended characters (e.g. Chinese)
-                    if (base.options.countExtendedCharacters) {
-                        var extended = $text.match(/[^\x00-\xff]/gi);
-
-                        if (extended == null) {
-                            textCount = $text.length;
-                        } else {
-                            textCount = $text.length + extended.length;
-                        }
-                    }
-
-                    if (base.options.twoCharCarriageReturn) {
-                        textCount += carriageReturnsCount;
-                    }
-                }
+                textCount = base.textCount($text);
             }
 
             // if max is auto retrieve value
@@ -159,7 +124,8 @@
 
                         $this.val(trimmedString.trim());
 
-                        textTotalCount = base.options.countDown ? 0 : base.options.max;
+                        textCount = base.textCount($this.val());
+                        textTotalCount = base.options.countDown ? base.options.max - textCount : textCount;
                         base.setCount(textTotalCount);
                     } else {
                         base.setErrors('max');
@@ -171,6 +137,61 @@
                     base.clearErrors('max');
                 }
             }
+        };
+
+        base.textCount = function(text) {
+            var textCount = 0;
+
+            if (base.options.type == "word") {  // word count
+                textCount = base.wordCount(text);
+            }
+            else {  // character count
+                textCount = base.characterCount(text);
+            }
+
+            return textCount;
+        };
+
+        base.wordCount = function(text) {
+            return text.trim().replace(/\s+/gi, ' ').split(' ').length;
+        };
+
+        base.characterCount = function(text) {
+            var textCount = 0,
+                carriageReturnsCount = 0;
+
+            // count carriage returns/newlines as 2 characters
+            if (base.options.twoCharCarriageReturn) {
+                var carriageReturns = text.match(/(\r\n|\n|\r)/g);
+
+                if (carriageReturns !== null) {
+                    carriageReturnsCount = carriageReturns.length;
+                }
+            }
+
+            if (base.options.countSpaces) { // if need to count spaces
+                textCount = text.replace(/[^\S\n|\r|\r\n]/g, ' ').length;
+            }
+            else {
+                textCount = text.replace(/\s/g, '').length;
+            }
+
+            // count extended characters (e.g. Chinese)
+            if (base.options.countExtendedCharacters) {
+                var extended = text.match(/[^\x00-\xff]/gi);
+
+                if (extended == null) {
+                    textCount = text.length;
+                } else {
+                    textCount = text.length + extended.length;
+                }
+            }
+
+            if (base.options.twoCharCarriageReturn) {
+                textCount += carriageReturnsCount;
+            }
+
+            return textCount;
         };
 
         base.setCount = function(count) {
