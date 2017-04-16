@@ -106,8 +106,12 @@
                             }
                         }
                         else {  // character type
+                            var maxLimit = (base.options.twoCharCarriageReturn) ?
+                                base.options.max - base.twoCharCarriageReturnCount($text)
+                                : base.options.max;
+
                             if (base.options.countSpaces) {     // if spaces should be counted
-                                trimmedString = $text.substring(0, base.options.max);
+                                trimmedString = $text.substring(0, maxLimit);
                             }
                             else {
                                 var charArray = $text.split(''),
@@ -115,7 +119,7 @@
                                 charCount = 0,
                                 i = 0;
 
-                                while (charCount < base.options.max && i < totalCharacters) {
+                                while (charCount < maxLimit && i < totalCharacters) {
                                     if (charArray[i] !== ' ') charCount++;
                                     trimmedString += charArray[i++];
                                 }
@@ -162,11 +166,7 @@
 
             // count carriage returns/newlines as 2 characters
             if (base.options.twoCharCarriageReturn) {
-                var carriageReturns = text.match(/(\r\n|\n|\r)/g);
-
-                if (carriageReturns !== null) {
-                    carriageReturnsCount = carriageReturns.length;
-                }
+                carriageReturnsCount = base.twoCharCarriageReturnCount(text);
             }
 
             if (base.options.countSpaces) { // if need to count spaces
@@ -192,6 +192,17 @@
             }
 
             return textCount;
+        };
+
+        base.twoCharCarriageReturnCount = function(text) {
+            var carriageReturns = text.match(/(\r\n|\n|\r)/g),
+                carriageReturnsCount = 0;
+
+            if (carriageReturns !== null) {
+                carriageReturnsCount = carriageReturns.length;
+            }
+
+            return carriageReturnsCount;
         };
 
         base.setCount = function(count) {
