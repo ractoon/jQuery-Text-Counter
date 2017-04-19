@@ -159,4 +159,4 @@ init                     : function(el){}          // Callback: function(element
 - [juliovedovatto](https://github.com/juliovedovatto) / [alvaro-canepa](https://github.com/alvaro-canepa) - multiple classes support for counter container
 - [dtipson](https://github.com/dtipson) - multiple classes error fix
 - [jmichalicek](https://github.com/jmichalicek) - count carriage returns/newlines as 2 characters
-- [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix 
+- [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix, trimmed newline calculation fix

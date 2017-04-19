@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.6.2
+* jQuery Text Counter Plugin v0.6.3
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
