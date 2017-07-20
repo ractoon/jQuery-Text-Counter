@@ -83,10 +83,11 @@
             }
 
             if (base.options.max !== -1) {  // if a maximum value has been set
-                if (textCount >= base.options.max && base.options.max !== 0) {
+                if (textCount === base.options.max && base.options.max !== 0) {
                     // TextCounter: maxcount(el) Callback
                     base.options.maxcount(base.el);
 
+                } else if (textCount > base.options.max && base.options.max !== 0) {
                     if (base.options.stopInputAtMaximum) {  // if the string should be trimmed at the maximum length
                         var trimmedString = '';
 
