@@ -314,7 +314,7 @@
         'countExtendedCharacters'   : false,                             // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
         'twoCharCarriageReturn'     : false,                             // count carriage returns/newlines as 2 characters
         'countOverflow'             : false,                              // count text overflow
-        'countOverflowText'         : "About %d %type has been entered", // text message for count overflow
+        'countOverflowText'         : "About %d extra %type(s) have been entered", // text message for count overflow
         'countOverflowTextCss'      : "text-overflow-div",               // css for overflow text count
 
         // Callback API
