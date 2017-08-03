@@ -94,6 +94,7 @@
                 if (textCount === base.options.max && base.options.max !== 0) {
                     // TextCounter: maxcount(el) Callback
                     base.options.maxcount(base.el);
+                    base.clearErrors('max');
 
                 } else if (textCount > base.options.max && base.options.max !== 0) {
                     if (base.options.stopInputAtMaximum) {  // if the string should be trimmed at the maximum length
