@@ -24,7 +24,7 @@
             // append the count element
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
-                $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessage)
+                $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessageClass)
                 .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')),
                 $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
@@ -249,7 +249,7 @@
         };
 
         base.setOverflowMessage = function () {
-            base.hideMessage(base.$container.find('.' + base.options.textCountMessage));
+            base.hideMessage(base.$container.find('.' + base.options.textCountMessageClass));
 
             base.removeOverflowMessage();
 
@@ -281,7 +281,7 @@
 
             if ($countEl.children('.error-text').length == 0) {
                 base.removeOverflowMessage();
-                base.showMessage(base.$container.find('.' + base.options.textCountMessage));
+                base.showMessage(base.$container.find('.' + base.options.textCountMessageClass));
                 $this.removeClass(base.options.inputErrorClass);
                 $countEl.removeClass(base.options.counterErrorClass);
             }
@@ -297,7 +297,7 @@
         'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
-        'textCountMessage'            : "text-count-message",            // class applied to the counter message
+        'textCountMessageClass'       : "text-count-message",            // class applied to the counter message
         'textCountClass'              : "text-count",                    // class applied to the counter length (the count number)
         'inputErrorClass'             : "error",                         // error class appended to the input element if error occurs
         'counterErrorClass'           : "error",                         // error class appended to the countContainerElement if error occurs
