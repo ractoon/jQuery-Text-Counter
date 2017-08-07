@@ -68,6 +68,16 @@
                     base.$container.text('error: [maxlength] attribute not set');
                 }
             }
+            else if (base.options.max == 'autocustom') {
+                var max = base.$el.attr(base.options.autoCustomAttr);
+
+                if (typeof max !== 'undefined' && max !== false) {
+                    base.options.max = max;
+                }
+                else {
+                    base.$container.text('error: [' + base.options.autoCustomAttr  + '] attribute not set');
+                }
+            }
 
             // if this is a countdown counter deduct from the max characters/words
             textTotalCount = base.options.countDown ? base.options.max - textCount : textCount;
@@ -294,7 +304,8 @@
     $.textcounter.defaultOptions = {
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
-        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must)
+        'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
         'textCountMessageClass'       : "text-count-message",            // class applied to the counter message
