@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.6.4
+* jQuery Text Counter Plugin v0.7.0
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -24,9 +24,17 @@
             // append the count element
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
-                $formatted_counter_text = $('<div/>').html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')).contents();
+                $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessage)
+                .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')),
+                $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
-            base.$container = $('<' + base.options.countContainerElement + '/>').addClass(base.options.countContainerClass).append($formatted_counter_text);
+            base.hideMessage($count_overflow_text);
+
+            base.$container = $('<' + base.options.countContainerElement + '/>')
+                .addClass(base.options.countContainerClass)
+                .append($formatted_counter_text)
+                .append($count_overflow_text);
+
             base.$text_counter = base.$container.find('span');
             base.$el.after(base.$container);
 
@@ -86,6 +94,7 @@
                 if (textCount === base.options.max && base.options.max !== 0) {
                     // TextCounter: maxcount(el) Callback
                     base.options.maxcount(base.el);
+                    base.clearErrors('max');
 
                 } else if (textCount > base.options.max && base.options.max !== 0) {
                     if (base.options.stopInputAtMaximum) {  // if the string should be trimmed at the maximum length
@@ -218,21 +227,51 @@
             $this.addClass(base.options.inputErrorClass);
             $countEl.addClass(base.options.counterErrorClass);
 
-            if (base.options.displayErrorText) {
-                switch(type) {
-                    case 'min':
+            switch(type) {
+                case 'min':
                     errorText = base.options.minimumErrorText;
                     break;
-                    case 'max':
+                case 'max':
                     errorText = base.options.maximumErrorText;
-                    break;
-                }
 
+                    if (base.options.countOverflow) {
+                        base.setOverflowMessage();
+                    }
+
+                    break;
+            }
+
+            if (base.options.displayErrorText) {
                 if (!$countEl.children('.error-text-' + type).length) {
                     $countEl.append('<' + base.options.errorTextElement + ' class="error-text error-text-' + type + '">' + errorText + '</' + base.options.errorTextElement + '>');
                 }
             }
         };
+
+        base.setOverflowMessage = function () {
+            base.hideMessage(base.$container.find('.' + base.options.textCountMessage));
+
+            base.removeOverflowMessage();
+
+            var overflowText = base.options.countOverflowText
+                .replace('%d', base.textCount(base.$el.val()) - base.options.max)
+                .replace('%type', base.options.type + 's');
+
+            var overflowDiv = base.$container.find('.' + base.options.countOverflowContainerClass).append(overflowText);
+            base.showMessage(overflowDiv);
+        },
+
+        base.removeOverflowMessage = function () {
+            base.$container.find('.' + base.options.countOverflowContainerClass).empty();
+        },
+
+        base.showMessage = function ($selector) {
+            $selector.css('display', 'inline');
+        },
+
+        base.hideMessage = function ($selector) {
+            $selector.css('display', 'none');
+        },
 
         base.clearErrors = function(type) {
             var $this = base.$el,
@@ -241,6 +280,8 @@
             $countEl.children('.error-text-' + type).remove();
 
             if ($countEl.children('.error-text').length == 0) {
+                base.removeOverflowMessage();
+                base.showMessage(base.$container.find('.' + base.options.textCountMessage));
                 $this.removeClass(base.options.inputErrorClass);
                 $countEl.removeClass(base.options.counterErrorClass);
             }
@@ -251,32 +292,36 @@
     };
 
     $.textcounter.defaultOptions = {
-        'type'                      : "character",              // "character" or "word"
-        'min'                       : 0,                        // minimum number of characters/words
-        'max'                       : 200,                      // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
-        'countContainerElement'     : "div",                    // HTML element to wrap the text count in
-        'countContainerClass'       : "text-count-wrapper",     // class applied to the countContainerElement
-        'textCountClass'            : "text-count",             // class applied to the counter length
-        'inputErrorClass'           : "error",                  // error class appended to the input element if error occurs
-        'counterErrorClass'         : "error",                  // error class appended to the countContainerElement if error occurs
-        'counterText'               : "Total Count: %d",        // counter text
-        'errorTextElement'          : "div",                    // error text element
-        'minimumErrorText'          : "Minimum not met",        // error message for minimum not met,
-        'maximumErrorText'          : "Maximum exceeded",       // error message for maximum range exceeded,
-        'displayErrorText'          : true,                     // display error text messages for minimum/maximum values
-        'stopInputAtMaximum'        : true,                     // stop further text input if maximum reached
-        'countSpaces'               : false,                    // count spaces as character (only for "character" type)
-        'countDown'                 : false,                    // if the counter should deduct from maximum characters/words rather than counting up
-        'countDownText'             : "Remaining: %d",          // count down text
-        'countExtendedCharacters'   : false,                    // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
-        'twoCharCarriageReturn'     : false,                    // count carriage returns/newlines as 2 characters
+        'type'                        : "character",                     // "character" or "word"
+        'min'                         : 0,                               // minimum number of characters/words
+        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+        'countContainerElement'       : "div",                           // HTML element to wrap the text count in
+        'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
+        'textCountMessage'            : "text-count-message",            // class applied to the counter message
+        'textCountClass'              : "text-count",                    // class applied to the counter length (the count number)
+        'inputErrorClass'             : "error",                         // error class appended to the input element if error occurs
+        'counterErrorClass'           : "error",                         // error class appended to the countContainerElement if error occurs
+        'counterText'                 : "Total Count: %d",               // counter text
+        'errorTextElement'            : "div",                           // error text element
+        'minimumErrorText'            : "Minimum not met",               // error message for minimum not met,
+        'maximumErrorText'            : "Maximum exceeded",              // error message for maximum range exceeded,
+        'displayErrorText'            : true,                            // display error text messages for minimum/maximum values
+        'stopInputAtMaximum'          : true,                            // stop further text input if maximum reached
+        'countSpaces'                 : false,                           // count spaces as character (only for "character" type)
+        'countDown'                   : false,                           // if the counter should deduct from maximum characters/words rather than counting up
+        'countDownText'               : "Remaining: %d",                 // count down text
+        'countExtendedCharacters'     : false,                           // count extended UTF-8 characters as 2 bytes (such as Chinese characters)
+        'twoCharCarriageReturn'       : false,                           // count carriage returns/newlines as 2 characters
+        'countOverflow'               : false,                           // display text overflow element
+        'countOverflowText'           : "Maximum %type exceeded by %d",  // count overflow text
+        'countOverflowContainerClass' : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
 
         // Callback API
-        'maxunder'                  : function(el){},           // Callback: function(element) - Fires when counter under max limit
-        'minunder'                  : function(el){},           // Callback: function(element) - Fires when counter under min limit
-        'maxcount'                  : function(el){},           // Callback: function(element) - Fires when the counter hits the maximum word/character count
-        'mincount'                  : function(el){},           // Callback: function(element) - Fires when the counter hits the minimum word/character count
-        'init'                      : function(el){}            // Callback: function(element) - Fires after the counter is initially setup
+        'maxunder'                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
+        'minunder'                    : function(el){},                  // Callback: function(element) - Fires when counter under min limit
+        'maxcount'                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the maximum word/character count
+        'mincount'                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the minimum word/character count
+        'init'                        : function(el){}                   // Callback: function(element) - Fires after the counter is initially setup
     };
 
     $.fn.textcounter = function(options) {
