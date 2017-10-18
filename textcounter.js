@@ -151,6 +151,17 @@
                     base.clearErrors('max');
                 }
             }
+			
+			// hide the counter if it doesn't meet either the minimum or maximum display cutoff
+			if  (base.options.minDisplayCutoff == -1 && base.options.maxDisplayCutoff == -1) {
+				base.$container.show();				
+			} else if (textCount <= base.options.min + base.options.minDisplayCutoff) { 
+				base.$container.show();
+			} else if (base.options.max !== -1 && textCount >= base.options.max - base.options.maxDisplayCutoff) {
+				base.$container.show();
+			} else {
+				base.$container.hide();
+			}
         };
 
         base.textCount = function(text) {
@@ -315,6 +326,8 @@
         'countOverflow'               : false,                           // display text overflow element
         'countOverflowText'           : "Maximum %type exceeded by %d",  // count overflow text
         'countOverflowContainerClass' : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
+        'minDisplayCutoff'            : -1,                              // maximum number of characters/words above the minimum to display a count
+        'maxDisplayCutoff'            : -1,                              // maximum number of characters/words below the maximum to display a count
 
         // Callback API
         'maxunder'                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
