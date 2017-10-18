@@ -166,3 +166,4 @@ init                        : function(el){}                   // Callback: func
 - [dtipson](https://github.com/dtipson) - multiple classes error fix
 - [jmichalicek](https://github.com/jmichalicek) - count carriage returns/newlines as 2 characters
 - [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix, trimmed newline calculation fix, maximum text reached condition fix, text count overflow notification
+- [trevorloflin](https://github.com/trevorloflin) - `minDisplayCutoff` and `maxDisplayCutoff` options
