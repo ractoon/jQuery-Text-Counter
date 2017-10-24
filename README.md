@@ -135,8 +135,8 @@ countOverflowText           : "Maximum %type exceeded by %d",  // count overflow
 countOverflowContainerClass : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
 
 // Callback API
-maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
-minunder                    : function(el){},                  // Callback: function(element) - Fires when counter under min limit
+maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under max limit
+minunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under min limit
 maxcount                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the maximum word/character count
 mincount                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the minimum word/character count
 init                        : function(el){}                   // Callback: function(element) - Fires after the counter is initially setup
