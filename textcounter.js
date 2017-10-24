@@ -304,7 +304,7 @@
     $.textcounter.defaultOptions = {
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
-        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must)
+        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
         'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
