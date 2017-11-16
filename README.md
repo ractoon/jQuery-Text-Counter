@@ -111,7 +111,8 @@ Fires when counter is under min limit.
 ```javascript
 type                        : "character",                     // "character" or "word"
 min                         : 0,                               // minimum number of characters/words
-max                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+max                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, , 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
+autoCustomAttr              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
 countContainerElement       : "div",                           // HTML element to wrap the text count in
 countContainerClass         : "text-count-wrapper",            // class applied to the countContainerElement
 textCountMessageClass       : "text-count-message",            // class applied to the counter message
@@ -132,10 +133,12 @@ twoCharCarriageReturn       : false,                           // count carriage
 countOverflow               : false,                           // display text overflow element
 countOverflowText           : "Maximum %type exceeded by %d",  // count overflow text
 countOverflowContainerClass : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
+minDisplayCutoff            : -1,                              // maximum number of characters/words above the minimum to display a count
+maxDisplayCutoff            : -1,                              // maximum number of characters/words below the maximum to display a count
 
 // Callback API
-maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
-minunder                    : function(el){},                  // Callback: function(element) - Fires when counter under min limit
+maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under max limit
+minunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under min limit
 maxcount                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the maximum word/character count
 mincount                    : function(el){},                  // Callback: function(element) - Fires when the counter hits the minimum word/character count
 init                        : function(el){}                   // Callback: function(element) - Fires after the counter is initially setup
@@ -164,3 +167,5 @@ init                        : function(el){}                   // Callback: func
 - [dtipson](https://github.com/dtipson) - multiple classes error fix
 - [jmichalicek](https://github.com/jmichalicek) - count carriage returns/newlines as 2 characters
 - [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix, trimmed newline calculation fix, maximum text reached condition fix, text count overflow notification
+- [trevorloflin](https://github.com/trevorloflin) - `minDisplayCutoff` and `maxDisplayCutoff` options
+- [t3mujin](https://github.com/t3mujin) - autocustom support (maxlength workaround), text fixes

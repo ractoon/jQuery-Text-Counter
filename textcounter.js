@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.7.0
+* jQuery Text Counter Plugin v0.8.0
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -66,6 +66,16 @@
                 }
                 else {
                     base.$container.text('error: [maxlength] attribute not set');
+                }
+            }
+            else if (base.options.max == 'autocustom') {
+                var max = base.$el.attr(base.options.autoCustomAttr);
+            
+                if (typeof max !== 'undefined' && max !== false) {
+                    base.options.max = max;
+                }
+                else {
+                    base.$container.text('error: [' + base.options.autoCustomAttr  + '] attribute not set');
                 }
             }
 
@@ -150,6 +160,17 @@
                     base.options.maxunder(base.el);
                     base.clearErrors('max');
                 }
+            }
+            
+            // hide the counter if it doesn't meet either the minimum or maximum display cutoff
+            if  (base.options.minDisplayCutoff == -1 && base.options.maxDisplayCutoff == -1) {
+                base.$container.show();             
+            } else if (textCount <= base.options.min + base.options.minDisplayCutoff) { 
+                base.$container.show();
+            } else if (base.options.max !== -1 && textCount >= base.options.max - base.options.maxDisplayCutoff) {
+                base.$container.show();
+            } else {
+                base.$container.hide();
             }
         };
 
@@ -294,7 +315,8 @@
     $.textcounter.defaultOptions = {
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
-        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
+        'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
         'textCountMessageClass'       : "text-count-message",            // class applied to the counter message
@@ -315,6 +337,8 @@
         'countOverflow'               : false,                           // display text overflow element
         'countOverflowText'           : "Maximum %type exceeded by %d",  // count overflow text
         'countOverflowContainerClass' : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
+        'minDisplayCutoff'            : -1,                              // maximum number of characters/words above the minimum to display a count
+        'maxDisplayCutoff'            : -1,                              // maximum number of characters/words below the maximum to display a count
 
         // Callback API
         'maxunder'                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
