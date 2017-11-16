@@ -132,6 +132,8 @@ twoCharCarriageReturn       : false,                           // count carriage
 countOverflow               : false,                           // display text overflow element
 countOverflowText           : "Maximum %type exceeded by %d",  // count overflow text
 countOverflowContainerClass : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
+minDisplayCutoff            : -1,                              // maximum number of characters/words above the minimum to display a count
+maxDisplayCutoff            : -1,                              // maximum number of characters/words below the maximum to display a count
 
 // Callback API
 maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
@@ -164,3 +166,4 @@ init                        : function(el){}                   // Callback: func
 - [dtipson](https://github.com/dtipson) - multiple classes error fix
 - [jmichalicek](https://github.com/jmichalicek) - count carriage returns/newlines as 2 characters
 - [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix, trimmed newline calculation fix, maximum text reached condition fix, text count overflow notification
+- [trevorloflin](https://github.com/trevorloflin) - `minDisplayCutoff` and `maxDisplayCutoff` options
