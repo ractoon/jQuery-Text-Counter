@@ -68,6 +68,16 @@
                     base.$container.text('error: [maxlength] attribute not set');
                 }
             }
+            else if (base.options.max == 'autocustom') {
+                var max = base.$el.attr(base.options.autoCustomAttr);
+            
+                if (typeof max !== 'undefined' && max !== false) {
+                    base.options.max = max;
+                }
+                else {
+                    base.$container.text('error: [' + base.options.autoCustomAttr  + '] attribute not set');
+                }
+            }
 
             // if this is a countdown counter deduct from the max characters/words
             textTotalCount = base.options.countDown ? base.options.max - textCount : textCount;
@@ -151,17 +161,17 @@
                     base.clearErrors('max');
                 }
             }
-			
-			// hide the counter if it doesn't meet either the minimum or maximum display cutoff
-			if  (base.options.minDisplayCutoff == -1 && base.options.maxDisplayCutoff == -1) {
-				base.$container.show();				
-			} else if (textCount <= base.options.min + base.options.minDisplayCutoff) { 
-				base.$container.show();
-			} else if (base.options.max !== -1 && textCount >= base.options.max - base.options.maxDisplayCutoff) {
-				base.$container.show();
-			} else {
-				base.$container.hide();
-			}
+            
+            // hide the counter if it doesn't meet either the minimum or maximum display cutoff
+            if  (base.options.minDisplayCutoff == -1 && base.options.maxDisplayCutoff == -1) {
+                base.$container.show();             
+            } else if (textCount <= base.options.min + base.options.minDisplayCutoff) { 
+                base.$container.show();
+            } else if (base.options.max !== -1 && textCount >= base.options.max - base.options.maxDisplayCutoff) {
+                base.$container.show();
+            } else {
+                base.$container.hide();
+            }
         };
 
         base.textCount = function(text) {
@@ -305,7 +315,8 @@
     $.textcounter.defaultOptions = {
         'type'                        : "character",                     // "character" or "word"
         'min'                         : 0,                               // minimum number of characters/words
-        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute
+        'max'                         : 200,                             // maximum number of characters/words, -1 for unlimited, 'auto' to use maxlength attribute, 'autocustom' to use a custom attribute for the length (must set "autoCustomAttr")
+        'autoCustomAttr'              : "counterlimit",                  // custom attribute name with the counter limit if the max is 'autocustom'
         'countContainerElement'       : "div",                           // HTML element to wrap the text count in
         'countContainerClass'         : "text-count-wrapper",            // class applied to the countContainerElement
         'textCountMessageClass'       : "text-count-message",            // class applied to the counter message
