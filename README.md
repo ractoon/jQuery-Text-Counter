@@ -169,3 +169,4 @@ init                        : function(el){}                   // Callback: func
 - [diptopol](https://github.com/diptopol) - `stopInputAtMaximum` with `twoCharCarriageReturn` count fix, trimmed newline calculation fix, maximum text reached condition fix, text count overflow notification
 - [trevorloflin](https://github.com/trevorloflin) - `minDisplayCutoff` and `maxDisplayCutoff` options
 - [t3mujin](https://github.com/t3mujin) - autocustom support (maxlength workaround), text fixes
+- [goranmiric ](https://github.com/goranmiric) - accessibility enhancements
