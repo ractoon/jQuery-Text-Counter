@@ -1,5 +1,5 @@
 /*!
-* jQuery Text Counter Plugin v0.8.0
+* jQuery Text Counter Plugin v0.9.0
 * https://github.com/ractoon/jQuery-Text-Counter
 *
 * Copyright 2014 ractoon
@@ -25,6 +25,7 @@
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
                 $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessageClass)
+                .attr('aria-live', 'assertive').attr('aria-atomic', 'true')
                 .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')),
                 $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
@@ -70,7 +71,7 @@
             }
             else if (base.options.max == 'autocustom') {
                 var max = base.$el.attr(base.options.autoCustomAttr);
-            
+
                 if (typeof max !== 'undefined' && max !== false) {
                     base.options.max = max;
                 }
@@ -161,11 +162,11 @@
                     base.clearErrors('max');
                 }
             }
-            
+
             // hide the counter if it doesn't meet either the minimum or maximum display cutoff
             if  (base.options.minDisplayCutoff == -1 && base.options.maxDisplayCutoff == -1) {
-                base.$container.show();             
-            } else if (textCount <= base.options.min + base.options.minDisplayCutoff) { 
+                base.$container.show();
+            } else if (textCount <= base.options.min + base.options.minDisplayCutoff) {
                 base.$container.show();
             } else if (base.options.max !== -1 && textCount >= base.options.max - base.options.maxDisplayCutoff) {
                 base.$container.show();
