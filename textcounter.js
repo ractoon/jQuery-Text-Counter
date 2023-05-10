@@ -25,7 +25,7 @@
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
                 $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessageClass)
-                .attr('aria-live', 'assertive').attr('aria-atomic', 'true')
+                .attr('aria-live', 'polite').attr('aria-atomic', 'true')
                 .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '">' + counterNum + '</span>')),
                 $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
