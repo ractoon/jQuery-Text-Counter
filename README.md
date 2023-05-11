@@ -170,3 +170,4 @@ init                        : function(el){}                   // Callback: func
 - [trevorloflin](https://github.com/trevorloflin) - `minDisplayCutoff` and `maxDisplayCutoff` options
 - [t3mujin](https://github.com/t3mujin) - autocustom support (maxlength workaround), text fixes
 - [goranmiric ](https://github.com/goranmiric) - accessibility enhancements
+- [ameshkin](https://github.com/ameshkin) - accessibility adjustments
