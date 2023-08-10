@@ -21,11 +21,13 @@
         base.init = function() {
             base.options = $.extend({}, $.textcounter.defaultOptions, options);
 
+            var counterElementId = base.options.counterId ?? base.el.id  + '_counter';
+
             // append the count element
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
                 $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessageClass)
-                .attr('aria-live', 'polite').attr('aria-atomic', 'true')
+                .attr('aria-live', 'polite').attr('aria-atomic', 'true').attr('id', counterElementId)
                 .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '" role="text">' + counterNum + '</span>')),
                 $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
@@ -38,6 +40,10 @@
 
             base.$text_counter = base.$container.find('span');
             base.$el.after(base.$container);
+
+            var curDescribedBy = base.$el.attr('aria-describedby') ?? '';
+            var describedByWithCount = (curDescribedBy + ' ' + counterElementId).trim();
+            base.$el.attr('aria-describedby', describedByWithCount);
 
             // bind input events
             base.$el.bind('keyup.textcounter click.textcounter blur.textcounter focus.textcounter change.textcounter paste.textcounter', base.checkLimits).trigger('click.textcounter');
@@ -340,6 +346,7 @@
         'countOverflowContainerClass' : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
         'minDisplayCutoff'            : -1,                              // maximum number of characters/words above the minimum to display a count
         'maxDisplayCutoff'            : -1,                              // maximum number of characters/words below the maximum to display a count
+        'counterId'                   : null,                            // custom ID for the counter element (e.g. to prevent conflicts). If one is not provided, a default ID will be assigned based on the ID of the element.
 
         // Callback API
         'maxunder'                    : function(el){},                  // Callback: function(element) - Fires when counter under max limit
