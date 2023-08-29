@@ -27,10 +27,17 @@
             var counterText = base.options.countDown ? base.options.countDownText : base.options.counterText,
                 counterNum = base.options.countDown ? base.options.max : 0,
                 $formatted_counter_text = $('<div/>').addClass(base.options.textCountMessageClass)
-                .attr('aria-live', 'polite').attr('aria-atomic', 'true').attr('id', counterElementId)
+                .attr('aria-atomic', 'true').attr('id', counterElementId)
                 .html(counterText.replace('%d', '<span class="' + base.options.textCountClass + '" role="text">' + counterNum + '</span>')),
                 $count_overflow_text = $('<div/>').addClass(base.options.countOverflowContainerClass);
 
+            base.el.addEventListener('focus', (e) => {
+                counterText.attr('aria-live', 'polite');
+            });
+
+            base.el.addEventListener('blur', (e) => {
+                counterText.removeAttr('aria-live');
+            })
             base.hideMessage($count_overflow_text);
 
             base.$container = $('<' + base.options.countContainerElement + '/>')
