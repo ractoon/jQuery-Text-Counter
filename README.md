@@ -135,7 +135,7 @@ countOverflowText           : "Maximum %type exceeded by %d",  // count overflow
 countOverflowContainerClass : "text-count-overflow-wrapper",   // class applied to the count overflow wrapper
 minDisplayCutoff            : -1,                              // maximum number of characters/words above the minimum to display a count
 maxDisplayCutoff            : -1,                              // maximum number of characters/words below the maximum to display a count
-
+counterId'                  : null,                            // custom ID for the counter element (e.g. to prevent conflicts). If one is not provided, a default ID will be assigned based on the ID of the element.
 // Callback API
 maxunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under max limit
 minunder                    : function(el){},                  // Callback: function(element) - Fires when counter is under min limit
